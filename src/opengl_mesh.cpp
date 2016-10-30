@@ -178,9 +178,9 @@ void Mesh::writeIndexData(int byteSize,
 
 void Mesh::readIndexData(int byteCount, void* data)
 {
-    glBindVertexArray(d->vao);
-    if (!isVertexArrayCurrent(d->vao))
-        std::cerr << "Failed to bind VAO" << std::endl;
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, d->ibo);
+    if (!isIndexBufferCurrent(d->ibo))
+        std::cerr << "Failed to bind IBO" << std::endl;
     glGetBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, byteCount, data);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
